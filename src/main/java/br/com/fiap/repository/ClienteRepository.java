@@ -15,8 +15,8 @@ public interface ClienteRepository extends CrudRepository<Cliente, Integer> {
 	@Query("select c from Cliente c where c.nome = :nome")
 	public List<Cliente> findByName(@Param("nome") String nome);
 	
-	@Query("select c from Cliente c where c.rg = :rg")
-	public List<Cliente> findByDocument(@Param("rg") String rg);
+	@Query("select c from Cliente c where c.cpf = :cpf")
+	public List<Cliente> findByDocument(@Param("cpf") String cpf);
 	
 //	@Query("select e from Endereco e where e.rua = :rua")
 //	public List<Endereco> findByStreet(@Param("rua") String rua);

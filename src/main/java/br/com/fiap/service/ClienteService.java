@@ -43,7 +43,7 @@ public class ClienteService {
 			Cliente cliente = new Cliente();
 			
 			cliente.setNome(clienteJson.getNome());
-			cliente.setRg(clienteJson.getRg());
+			cliente.setCpf(clienteJson.getCpf());
 			cliente.setRua(clienteJson.getEndereco().getRua());
 			cliente.setBairro(clienteJson.getEndereco().getBairro());
 			cliente.setNumero(clienteJson.getEndereco().getNumero());

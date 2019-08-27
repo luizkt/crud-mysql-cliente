@@ -10,9 +10,9 @@ public class ClienteJson {
 	@NotNull
 	private String nome;
 	
-	@JsonProperty("rg")
+	@JsonProperty("cpf")
 	@NotNull
-	private String rg;
+	private String cpf;
 	
 	@JsonProperty("endereco")
 	private EnderecoJson endereco;
@@ -25,12 +25,12 @@ public class ClienteJson {
 		this.nome = nome;
 	}
 
-	public String getRg() {
-		return rg;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setRg(String rg) {
-		this.rg = rg;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public EnderecoJson getEndereco() {

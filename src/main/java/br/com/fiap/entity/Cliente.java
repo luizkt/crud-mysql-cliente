@@ -1,17 +1,12 @@
 package br.com.fiap.entity;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -27,8 +22,8 @@ public class Cliente implements Serializable {
 	@Column(name = "CLIENTE_ID", unique = true, nullable = false)
 	private Integer clienteId;
 
-	@Column(name = "rg", unique = true, nullable = false)
-	private String rg;
+	@Column(name = "CPF", unique = true, nullable = false)
+	private String cpf;
 	
 	@Column(name = "NOME")
 	private String nome;
@@ -54,9 +49,6 @@ public class Cliente implements Serializable {
 	@Column(name = "PAIS")
 	private String pais;
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="cliente")
-	private Set<Pedido> pedidos = new HashSet<>();
-
 	public Integer getClienteId() {
 		return clienteId;
 	}
@@ -65,12 +57,12 @@ public class Cliente implements Serializable {
 		this.clienteId = clienteId;
 	}
 
-	public String getRg() {
-		return rg;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setRg(String rg) {
-		this.rg = rg;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public String getNome() {
@@ -135,14 +127,6 @@ public class Cliente implements Serializable {
 
 	public void setPais(String pais) {
 		this.pais = pais;
-	}
-
-	public Set<Pedido> getPedidos() {
-		return pedidos;
-	}
-
-	public void setPedidos(Set<Pedido> pedidos) {
-		this.pedidos = pedidos;
 	}
 
 }
