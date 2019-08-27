@@ -42,8 +42,12 @@ public class ClienteService {
 			ClienteJson clienteJson = mapper.convertValue(payload, ClienteJson.class);
 			Cliente cliente = new Cliente();
 			
-			cliente.setNome(clienteJson.getNome());
+			
 			cliente.setCpf(clienteJson.getCpf());
+			cliente.setNome(clienteJson.getNome());
+			cliente.setSobrenome(clienteJson.getSobrenome());
+			cliente.setEmail(clienteJson.getEmail());
+			cliente.setDataNascimento(clienteJson.getDataNascimento());
 			cliente.setRua(clienteJson.getEndereco().getRua());
 			cliente.setBairro(clienteJson.getEndereco().getBairro());
 			cliente.setNumero(clienteJson.getEndereco().getNumero());
