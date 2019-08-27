@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "CLIENTE", catalog = "pdv", uniqueConstraints = {
+@Table(name = "CLIENTE", catalog = "heroku_0bef9414c03f6e7", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "CLIENTE_ID") })
 public class Cliente implements Serializable {
 
