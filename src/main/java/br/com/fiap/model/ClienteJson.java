@@ -22,7 +22,7 @@ public class ClienteJson {
 	@NotNull
 	private String email;
 
-	@JsonProperty("dataNascimento")
+	@JsonProperty("data_nascimento")
 	private String dataNascimento;
 
 	@JsonProperty("endereco")
