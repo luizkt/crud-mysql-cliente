@@ -11,26 +11,25 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "CLIENTE", catalog = "${database.name}", uniqueConstraints = {
-		@UniqueConstraint(columnNames = "CLIENTE_ID") })
+@Table(name = "CLIENTE", uniqueConstraints = { @UniqueConstraint(columnNames = "CLIENTE_ID") })
 public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "CLIENTE_ID", unique = true, nullable = false)
 	private Integer clienteId;
 
 	@Column(name = "CPF", unique = true, nullable = false)
 	private String cpf;
-	
+
 	@Column(name = "NOME")
 	private String nome;
-	
+
 	@Column(name = "RUA")
 	private String rua;
-	
+
 	@Column(name = "BAIRRO")
 	private String bairro;
 
@@ -48,7 +47,7 @@ public class Cliente implements Serializable {
 
 	@Column(name = "PAIS")
 	private String pais;
-	
+
 	public Integer getClienteId() {
 		return clienteId;
 	}
