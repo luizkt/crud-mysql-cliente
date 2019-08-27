@@ -92,10 +92,10 @@ public class ClienteService {
 	}
 	
 	@Transactional(readOnly = true)
-	@RequestMapping(value = "/rg/{rg}", method = RequestMethod.GET)
+	@RequestMapping(value = "/cpf/{cpf}", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Cliente> findByDocument(@PathVariable String rg) {
-		return clienteRepository.findByDocument(rg);
+	public List<Cliente> findByDocument(@PathVariable String cpf) {
+		return clienteRepository.findByDocument(cpf);
 	}
 
 //	@Transactional(readOnly = true)
