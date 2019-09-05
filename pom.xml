@@ -9,10 +9,10 @@
 		<version>2.1.6.RELEASE</version>
 	</parent>
 	<groupId>br.com.fiap.jpa</groupId>
-	<artifactId>crud-mysql-heroku-cliente</artifactId>
+	<artifactId>crud-mysql-cliente</artifactId>
 	<version>1.0.0</version>
-	<name>crud-mysql-heroku-cliente</name>
-	<description>Projeto de uma API de CRUD básico hospedado no heroku</description>
+	<name>crud-mysql-cliente</name>
+	<description>Projeto de uma API de CRUD básico</description>
 
 	<dependencies>
 		<dependency>
