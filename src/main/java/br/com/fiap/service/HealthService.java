@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class HealthService {
     @GetMapping("/health")
     public String index() {
-        return "Hello there! I'm running.";
+        return "UP";
     }
 }
