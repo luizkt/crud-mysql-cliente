@@ -10,7 +10,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.metadata.GenericTableMetaDataProvider;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +22,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.fiap.entity.Cliente;
 import br.com.fiap.model.ClienteJson;
-import br.com.fiap.model.EnderecoJson;
 import br.com.fiap.repository.ClienteRepository;
 
 @RestController
@@ -46,7 +44,7 @@ public class ClienteService {
 
 			cliente.setCpf(clienteJson.getCpf());
 			cliente.setNome(clienteJson.getNome());
-			cliente.setSobrenome(clienteJson.getSobrenome());
+			cliente.setUuid(clienteJson.getUuid());
 			cliente.setEmail(clienteJson.getEmail());
 			cliente.setDataNascimento(clienteJson.getDataNascimento());
 			cliente.setRua(clienteJson.getEndereco().getRua());
@@ -90,12 +88,10 @@ public class ClienteService {
 
 			clienteList.forEach(cliente -> {
 				cliente.setCpf(cpf);
+				cliente.setUuid(cliente.getUuid());
 				cliente.setNome(clienteJson.getNome() == null || clienteJson.getNome().isEmpty()
 						? cliente.getNome()
 						: clienteJson.getNome());
-				cliente.setSobrenome(clienteJson.getSobrenome() == null || clienteJson.getSobrenome().isEmpty()
-						? cliente.getSobrenome()
-						: clienteJson.getSobrenome());
 				cliente.setEmail(clienteJson.getEmail() == null || clienteJson.getEmail().isEmpty()
 						? cliente.getEmail()
 						: clienteJson.getEmail());
@@ -181,18 +177,18 @@ public class ClienteService {
 		return clienteRepository.findAll();
 	}
 
-	// @Transactional
-	// public void addAll(Collection<Cliente> clientes) {
-	// for (Cliente cliente : clientes) {
-	// clienteRepository.save(cliente);
-	// }
-	// }
-
 	@Transactional(readOnly = true)
 	@RequestMapping(value = "/nome/{nome}", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Cliente> findByName(@PathVariable String nome) {
 		return clienteRepository.findByName(nome);
+	}
+	
+	@Transactional(readOnly = true)
+	@RequestMapping(value = "/uuid/{uuid}", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Cliente> findByUuid(@PathVariable String uuid) {
+		return clienteRepository.findByUuid(uuid);
 	}
 
 	@Transactional(readOnly = true)
@@ -202,8 +198,4 @@ public class ClienteService {
 		return clienteRepository.findByDocument(cpf);
 	}
 
-	// @Transactional(readOnly = true)
-	// public Optional<Cliente> findById(int id) {
-	// return clienteRepository.findById(id);
-	// }
 }

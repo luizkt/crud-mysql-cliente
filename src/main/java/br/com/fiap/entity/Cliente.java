@@ -23,12 +23,12 @@ public class Cliente implements Serializable {
 
 	@Column(name = "CPF", unique = true, nullable = false)
 	private String cpf;
+	
+	@Column(name = "UUID")
+	private String uuid;
 
 	@Column(name = "NOME")
 	private String nome;
-
-	@Column(name = "SOBRENOME")
-	private String sobrenome;
 
 	@Column(name = "EMAIL")
 	private String email;
@@ -77,20 +77,20 @@ public class Cliente implements Serializable {
 		this.cpf = cpf;
 	}
 
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+
 	public String getNome() {
 		return nome;
 	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getSobrenome() {
-		return sobrenome;
-	}
-
-	public void setSobrenome(String sobrenome) {
-		this.sobrenome = sobrenome;
 	}
 
 	public String getEmail() {
@@ -100,14 +100,6 @@ public class Cliente implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	// public Date getDataNascimento() {
-	// return dataNascimento;
-	// }
-	//
-	// public void setDataNascimento(Date dataNascimento) {
-	// this.dataNascimento = dataNascimento;
-	// }
 
 	public String getDataNascimento() {
 		return dataNascimento;

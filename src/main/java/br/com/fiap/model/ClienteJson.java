@@ -9,14 +9,13 @@ public class ClienteJson {
 	@JsonProperty("cpf")
 	@NotNull
 	private String cpf;
+	
+	@JsonProperty("uuid")
+	private String uuid;
 
 	@JsonProperty("nome")
 	@NotNull
 	private String nome;
-
-	@JsonProperty("sobrenome")
-	@NotNull
-	private String sobrenome;
 
 	@JsonProperty("email")
 	@NotNull
@@ -36,20 +35,20 @@ public class ClienteJson {
 		this.cpf = cpf;
 	}
 
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+
 	public String getNome() {
 		return nome;
 	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getSobrenome() {
-		return sobrenome;
-	}
-
-	public void setSobrenome(String sobrenome) {
-		this.sobrenome = sobrenome;
 	}
 
 	public String getEmail() {
