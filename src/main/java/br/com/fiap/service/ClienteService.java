@@ -1,5 +1,6 @@
 package br.com.fiap.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.fiap.entity.Cliente;
 import br.com.fiap.model.ClienteJson;
+import br.com.fiap.model.EnderecoJson;
 import br.com.fiap.repository.ClienteRepository;
 
 @RestController
@@ -173,29 +175,131 @@ public class ClienteService {
 	@Transactional(readOnly = true)
 	@RequestMapping(path = "/all", method = RequestMethod.GET)
 	@ResponseBody
-	public Iterable<Cliente> getAllUsers() {
-		return clienteRepository.findAll();
+	public Iterable<ClienteJson> getAllUsers() {
+		
+		List<ClienteJson> clientesJson = new ArrayList<>();
+		
+		clienteRepository.findAll().forEach(cliente -> {
+			ClienteJson clienteJson = new ClienteJson();
+			EnderecoJson enderecoJson = new EnderecoJson();
+			
+			clienteJson.setCpf(cliente.getCpf());
+			clienteJson.setDataNascimento(cliente.getDataNascimento());
+			clienteJson.setEmail(cliente.getEmail());
+			clienteJson.setNome(cliente.getNome());
+			clienteJson.setUuid(cliente.getUuid());
+			
+			enderecoJson.setBairro(cliente.getBairro());
+			enderecoJson.setCep(cliente.getCep());
+			enderecoJson.setCidade(cliente.getCidade());
+			enderecoJson.setEstado(cliente.getEstado());
+			enderecoJson.setNumero(cliente.getNumero());
+			enderecoJson.setPais(cliente.getPais());
+			enderecoJson.setRua(cliente.getRua());
+			clienteJson.setEndereco(enderecoJson);
+			
+			clientesJson.add(clienteJson);	
+		});
+		
+		return clientesJson;
+		
 	}
 
 	@Transactional(readOnly = true)
 	@RequestMapping(value = "/nome/{nome}", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Cliente> findByName(@PathVariable String nome) {
-		return clienteRepository.findByName(nome);
+	public List<ClienteJson> findByName(@PathVariable String nome) {
+		
+		List<ClienteJson> clientesJson = new ArrayList<>();
+		
+		clienteRepository.findByName(nome).forEach(cliente -> {
+			ClienteJson clienteJson = new ClienteJson();
+			EnderecoJson enderecoJson = new EnderecoJson();
+			
+			clienteJson.setCpf(cliente.getCpf());
+			clienteJson.setDataNascimento(cliente.getDataNascimento());
+			clienteJson.setEmail(cliente.getEmail());
+			clienteJson.setNome(cliente.getNome());
+			clienteJson.setUuid(cliente.getUuid());
+			
+			enderecoJson.setBairro(cliente.getBairro());
+			enderecoJson.setCep(cliente.getCep());
+			enderecoJson.setCidade(cliente.getCidade());
+			enderecoJson.setEstado(cliente.getEstado());
+			enderecoJson.setNumero(cliente.getNumero());
+			enderecoJson.setPais(cliente.getPais());
+			enderecoJson.setRua(cliente.getRua());
+			clienteJson.setEndereco(enderecoJson);
+			
+			clientesJson.add(clienteJson);	
+		});
+		
+		return clientesJson;
 	}
 	
 	@Transactional(readOnly = true)
 	@RequestMapping(value = "/uuid/{uuid}", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Cliente> findByUuid(@PathVariable String uuid) {
-		return clienteRepository.findByUuid(uuid);
+	public List<ClienteJson> findByUuid(@PathVariable String uuid) {
+		
+		List<ClienteJson> clientesJson = new ArrayList<>();
+		
+		clienteRepository.findByUuid(uuid).forEach(cliente -> {
+			ClienteJson clienteJson = new ClienteJson();
+			EnderecoJson enderecoJson = new EnderecoJson();
+			
+			clienteJson.setCpf(cliente.getCpf());
+			clienteJson.setDataNascimento(cliente.getDataNascimento());
+			clienteJson.setEmail(cliente.getEmail());
+			clienteJson.setNome(cliente.getNome());
+			clienteJson.setUuid(cliente.getUuid());
+			
+			enderecoJson.setBairro(cliente.getBairro());
+			enderecoJson.setCep(cliente.getCep());
+			enderecoJson.setCidade(cliente.getCidade());
+			enderecoJson.setEstado(cliente.getEstado());
+			enderecoJson.setNumero(cliente.getNumero());
+			enderecoJson.setPais(cliente.getPais());
+			enderecoJson.setRua(cliente.getRua());
+			clienteJson.setEndereco(enderecoJson);
+			
+			clientesJson.add(clienteJson);	
+		});
+		
+		return clientesJson;
 	}
 
 	@Transactional(readOnly = true)
 	@RequestMapping(value = "/cpf/{cpf}", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Cliente> findByDocument(@PathVariable String cpf) {
-		return clienteRepository.findByDocument(cpf);
+	public List<ClienteJson> findByDocument(@PathVariable String cpf) {
+		
+		List<ClienteJson> clientesJson = new ArrayList<>();
+		
+		
+		clienteRepository.findByDocument(cpf).forEach(cliente -> {
+			ClienteJson clienteJson = new ClienteJson();
+			EnderecoJson enderecoJson = new EnderecoJson();
+			
+			clienteJson.setCpf(cliente.getCpf());
+			clienteJson.setDataNascimento(cliente.getDataNascimento());
+			clienteJson.setEmail(cliente.getEmail());
+			clienteJson.setNome(cliente.getNome());
+			clienteJson.setUuid(cliente.getUuid());
+			
+			enderecoJson.setBairro(cliente.getBairro());
+			enderecoJson.setCep(cliente.getCep());
+			enderecoJson.setCidade(cliente.getCidade());
+			enderecoJson.setEstado(cliente.getEstado());
+			enderecoJson.setNumero(cliente.getNumero());
+			enderecoJson.setPais(cliente.getPais());
+			enderecoJson.setRua(cliente.getRua());
+			clienteJson.setEndereco(enderecoJson);
+			
+			clientesJson.add(clienteJson);	
+		});
+		
+		return clientesJson;
 	}
 
 }
