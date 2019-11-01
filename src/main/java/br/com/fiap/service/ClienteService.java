@@ -36,26 +36,26 @@ public class ClienteService {
 	@Transactional
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<String> add(@Valid @RequestBody Map<String, Object> payload) {
+	public ResponseEntity<String> add(@Valid @RequestBody ClienteJson payload) {
 
 		try {
 
-			ObjectMapper mapper = new ObjectMapper();
-			ClienteJson clienteJson = mapper.convertValue(payload, ClienteJson.class);
+		//	ObjectMapper mapper = new ObjectMapper();
+		//	ClienteJson clienteJson = mapper.convertValue(payload, ClienteJson.class);
 			Cliente cliente = new Cliente();
 
-			cliente.setCpf(clienteJson.getCpf());
-			cliente.setNome(clienteJson.getNome());
-			cliente.setUuid(clienteJson.getUuid());
-			cliente.setEmail(clienteJson.getEmail());
-			cliente.setDataNascimento(clienteJson.getDataNascimento());
-			cliente.setRua(clienteJson.getEndereco().getRua());
-			cliente.setBairro(clienteJson.getEndereco().getBairro());
-			cliente.setNumero(clienteJson.getEndereco().getNumero());
-			cliente.setCidade(clienteJson.getEndereco().getCidade());
-			cliente.setEstado(clienteJson.getEndereco().getEstado());
-			cliente.setCep(clienteJson.getEndereco().getCep());
-			cliente.setPais(clienteJson.getEndereco().getPais());
+			cliente.setCpf(payload.getCpf());
+			cliente.setNome(payload.getNome());
+			cliente.setUuid(payload.getUuid());
+			cliente.setEmail(payload.getEmail());
+			cliente.setDataNascimento(payload.getDataNascimento());
+			cliente.setRua(payload.getEndereco().getRua());
+			cliente.setBairro(payload.getEndereco().getBairro());
+			cliente.setNumero(payload.getEndereco().getNumero());
+			cliente.setCidade(payload.getEndereco().getCidade());
+			cliente.setEstado(payload.getEndereco().getEstado());
+			cliente.setCep(payload.getEndereco().getCep());
+			cliente.setPais(payload.getEndereco().getPais());
 
 			clienteRepository.save(cliente);
 
@@ -78,7 +78,7 @@ public class ClienteService {
 	@Transactional
 	@RequestMapping(path = "/update/{cpf}", method = RequestMethod.PATCH)
 	@ResponseBody
-	public ResponseEntity<String> updateClienteById(@RequestBody Map<String, Object> payload,
+	public ResponseEntity<String> updateClienteById(@RequestBody ClienteJson payload,
 			@PathVariable("cpf") String cpf) {
 
 		try {
@@ -86,42 +86,42 @@ public class ClienteService {
 			List<Cliente> clienteList = clienteRepository.findByDocument(cpf);
 
 			ObjectMapper mapper = new ObjectMapper();
-			ClienteJson clienteJson = mapper.convertValue(payload, ClienteJson.class);
+			//ClienteJson clienteJson = mapper.convertValue(payload, ClienteJson.class);
 
 			clienteList.forEach(cliente -> {
 				cliente.setCpf(cpf);
 				cliente.setUuid(cliente.getUuid());
-				cliente.setNome(clienteJson.getNome() == null || clienteJson.getNome().isEmpty()
+				cliente.setNome(payload.getNome() == null || payload.getNome().isEmpty()
 						? cliente.getNome()
-						: clienteJson.getNome());
-				cliente.setEmail(clienteJson.getEmail() == null || clienteJson.getEmail().isEmpty()
+						: payload.getNome());
+				cliente.setEmail(payload.getEmail() == null || payload.getEmail().isEmpty()
 						? cliente.getEmail()
-						: clienteJson.getEmail());
-				cliente.setDataNascimento(clienteJson.getDataNascimento() == null || clienteJson.getDataNascimento().isEmpty()
+						: payload.getEmail());
+				cliente.setDataNascimento(payload.getDataNascimento() == null || payload.getDataNascimento().isEmpty()
 						? cliente.getDataNascimento()
-						: clienteJson.getDataNascimento());
-				if(clienteJson.getEndereco() != null) {
-					cliente.setRua(clienteJson.getEndereco().getRua() == null || clienteJson.getEndereco().getRua().isEmpty()
+						: payload.getDataNascimento());
+				if(payload.getEndereco() != null) {
+					cliente.setRua(payload.getEndereco().getRua() == null || payload.getEndereco().getRua().isEmpty()
 							? cliente.getRua()
-							: clienteJson.getEndereco().getRua());
-					cliente.setBairro(clienteJson.getEndereco().getBairro() == null || clienteJson.getEndereco().getBairro().isEmpty()
+							: payload.getEndereco().getRua());
+					cliente.setBairro(payload.getEndereco().getBairro() == null || payload.getEndereco().getBairro().isEmpty()
 							? cliente.getBairro()
-							: clienteJson.getEndereco().getBairro());
-					cliente.setNumero(clienteJson.getEndereco().getNumero() == null || clienteJson.getEndereco().getNumero().isEmpty()
+							: payload.getEndereco().getBairro());
+					cliente.setNumero(payload.getEndereco().getNumero() == null || payload.getEndereco().getNumero().isEmpty()
 							? cliente.getNumero()
-							: clienteJson.getEndereco().getNumero());
-					cliente.setCidade(clienteJson.getEndereco().getCidade() == null || clienteJson.getEndereco().getCidade().isEmpty()
+							: payload.getEndereco().getNumero());
+					cliente.setCidade(payload.getEndereco().getCidade() == null || payload.getEndereco().getCidade().isEmpty()
 							? cliente.getCidade()
-							: clienteJson.getEndereco().getCidade());
-					cliente.setEstado(clienteJson.getEndereco().getEstado() == null || clienteJson.getEndereco().getEstado().isEmpty()
+							: payload.getEndereco().getCidade());
+					cliente.setEstado(payload.getEndereco().getEstado() == null || payload.getEndereco().getEstado().isEmpty()
 							? cliente.getEstado()
-							: clienteJson.getEndereco().getEstado());
-					cliente.setCep(clienteJson.getEndereco().getCep() == null || clienteJson.getEndereco().getCep().isEmpty()
+							: payload.getEndereco().getEstado());
+					cliente.setCep(payload.getEndereco().getCep() == null || payload.getEndereco().getCep().isEmpty()
 							? cliente.getCep()
-							: clienteJson.getEndereco().getCep());
-					cliente.setPais(clienteJson.getEndereco().getPais() == null || clienteJson.getEndereco().getPais().isEmpty()
+							: payload.getEndereco().getCep());
+					cliente.setPais(payload.getEndereco().getPais() == null || payload.getEndereco().getPais().isEmpty()
 							? cliente.getPais()
-							: clienteJson.getEndereco().getPais());
+							: payload.getEndereco().getPais());
 				}
 				
 				clienteRepository.save(cliente);

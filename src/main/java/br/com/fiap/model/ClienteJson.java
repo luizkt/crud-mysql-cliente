@@ -11,6 +11,7 @@ public class ClienteJson {
 	private String cpf;
 	
 	@JsonProperty("uuid")
+	@NotNull
 	private String uuid;
 
 	@JsonProperty("nome")
