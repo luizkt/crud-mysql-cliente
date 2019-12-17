@@ -7,9 +7,32 @@ pipeline {
       }
     }
 
-    stage('build') {
+    stage('Build') {
+      parallel {
+        stage('Build') {
+          steps {
+            sh 'mvn install'
+          }
+        }
+
+        stage('Build Docker') {
+          steps {
+            sh 'docker build . -t luizkt/crud-mysql-cliente-jenkins:latest'
+          }
+        }
+
+      }
+    }
+
+    stage('Publish container') {
       steps {
-        sh 'mvn install'
+        sh 'docker push luizkt/crud-mysql-cliente-jenkins:latest'
+      }
+    }
+
+    stage('Run container') {
+      steps {
+        sh 'docker run -p 8080:8080 -it luizkt/crud-mysql-cliente-jenkins:latest'
       }
     }
 
