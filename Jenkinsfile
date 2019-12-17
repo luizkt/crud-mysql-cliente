@@ -2,8 +2,19 @@ pipeline {
   agent any
   stages {
     stage('Checkout') {
-      steps {
-        git(url: 'https://github.com/luizkt/crud-mysql-cliente', branch: 'master')
+      parallel {
+        stage('Checkout') {
+          steps {
+            git(url: 'https://github.com/luizkt/crud-mysql-cliente', branch: 'master')
+          }
+        }
+
+        stage('User') {
+          steps {
+            sh 'echo $USER'
+          }
+        }
+
       }
     }
 
