@@ -28,7 +28,7 @@ pipeline {
 
         stage('Build Docker') {
           steps {
-            sh 'echo myPassword | sudo docker build . -t luizkt/crud-mysql-cliente-jenkins:latest'
+            sh 'echo jenkins | sudo -S docker build . -t luizkt/crud-mysql-cliente-jenkins:latest'
           }
         }
 
