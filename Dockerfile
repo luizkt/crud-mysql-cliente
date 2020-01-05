@@ -1,7 +1,7 @@
 FROM java:8-jdk-alpine as build
 WORKDIR /usr/app
 
-COPY mvnw .
+COPY mvnw mvnw
 COPY .mvn .mvn
 COPY pom.xml .
 
